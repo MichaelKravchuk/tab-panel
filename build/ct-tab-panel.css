@@ -1,0 +1,125 @@
+tab-panel {
+  font-family: Arial; }
+  tab-panel tab-nav {
+    display: block;
+    padding: 30px 30px 0px 30px;
+    border-bottom: 1px solid #b8b8b8; }
+    tab-panel tab-nav tab-nav-item {
+      padding-bottom: 16px;
+      display: inline-block;
+      color: #b8b8b8;
+      font-weight: 400;
+      margin-right: 35px;
+      font-size: 1.167em;
+      cursor: pointer;
+      border-bottom: 4px solid transparent; }
+      tab-panel tab-nav tab-nav-item:last-child {
+        margin-right: 0px !important; }
+      tab-panel tab-nav tab-nav-item:hover {
+        border-bottom-color: #b8b8b8; }
+      tab-panel tab-nav tab-nav-item.active {
+        color: #2E6FB5;
+        border-bottom-color: #2E6FB5; }
+        tab-panel tab-nav tab-nav-item.active .count {
+          background-color: #2E6FB5 !important; }
+      tab-panel tab-nav tab-nav-item .count {
+        padding: 0px 10px;
+        border-radius: 5px;
+        margin-left: 10px;
+        background-color: #b8b8b8;
+        color: white !important; }
+        tab-panel tab-nav tab-nav-item .count:empty {
+          display: none; }
+  tab-panel tab-content {
+    position: relative;
+    display: block; }
+    tab-panel tab-content tab-content-item {
+      position: relative;
+      z-index: 2;
+      visibility: hidden;
+      display: none;
+      padding: 30px;
+      height: 200px; }
+      tab-panel tab-content tab-content-item.active {
+        visibility: visible;
+        display: block; }
+      tab-panel tab-content tab-content-item:nth-child(1) {
+        background-color: #FFA528; }
+      tab-panel tab-content tab-content-item:nth-child(2) {
+        background-color: #FF2747; }
+      tab-panel tab-content tab-content-item:nth-child(3) {
+        background-color: #00AE88; }
+      tab-panel tab-content tab-content-item:nth-child(4) {
+        background-color: #B4265E; }
+    tab-panel tab-content .tab-panel-load {
+      position: absolute;
+      z-index: 1;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      background-color: transparent;
+      transition: opacity 0.2s, background-color 0.2s, z-index 0.2s 0.2s; }
+      tab-panel tab-content .tab-panel-load.show {
+        opacity: 1;
+        z-index: 2;
+        background-color: white;
+        transition: opacity 0.2s, background-color 0.2s, z-index 0s; }
+      tab-panel tab-content .tab-panel-load div {
+        display: block;
+        width: 125px;
+        height: 125px;
+        transform: scale(0.5); }
+      tab-panel tab-content .tab-panel-load span {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        animation-name: loader;
+        animation-duration: 1.2s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        border-radius: 12px;
+        background-color: white; }
+        tab-panel tab-content .tab-panel-load span:nth-child(1) {
+          top: 51px;
+          left: 0;
+          animation-delay: .45s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(2) {
+          top: 15px;
+          left: 15px;
+          animation-delay: .6s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(3) {
+          top: 0;
+          left: 51px;
+          animation-delay: .75s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(4) {
+          top: 15px;
+          right: 15px;
+          animation-delay: .9s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(5) {
+          top: 51px;
+          right: 0;
+          animation-delay: 1.05s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(6) {
+          right: 15px;
+          bottom: 15px;
+          animation-delay: 1.2s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(7) {
+          bottom: 0;
+          left: 51px;
+          animation-delay: 1.35s; }
+        tab-panel tab-content .tab-panel-load span:nth-child(8) {
+          bottom: 15px;
+          left: 15px;
+          animation-delay: 1.5s; }
+
+@keyframes loader {
+  0% {
+    background-color: #58658c; }
+  100% {
+    background-color: white; } }

@@ -1,0 +1,189 @@
+$baseColor: ("1": #b8b8b8, "2": #2E6FB5); 
+$time: 0.2s;
+
+
+tab-panel{
+    font-family: Arial;
+
+    tab-nav{
+    	display: block;
+        padding: 30px 30px 0px 30px;
+        border-bottom: 1px solid map-get($baseColor, "1");
+        
+        tab-nav-item{
+            padding-bottom: 16px;
+            display: inline-block;
+            color: map-get($baseColor, "1");
+            font-weight: 400;
+            margin-right: 35px;
+            font-size: 1.167em;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+            
+            &:last-child{
+                margin-right: 0px !important;
+            }
+            
+            &:hover{
+                border-bottom-color: map-get($baseColor, "1");
+            }  
+            &.active{
+                color: map-get($baseColor, "2");
+                border-bottom-color: map-get($baseColor, "2");
+                
+                .count{
+                    background-color: map-get($baseColor, "2") !important;
+                }
+            }
+
+            .count{
+                padding: 0px 10px;
+                border-radius: 5px;
+                margin-left: 10px;
+                background-color: map-get($baseColor, "1");
+                color: white !important;
+                
+                &:empty{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    tab-content{
+        position: relative;
+        display: block;
+        
+        tab-content-item{
+            position: relative;
+            z-index: 2;
+            visibility: hidden;
+            display: none;
+            padding: 30px;
+            height: 200px;
+            
+            &.active{
+                visibility: visible;
+                display: block;
+            }
+
+            &:nth-child(1){
+                background-color: #FFA528;
+            }
+
+            &:nth-child(2){
+                background-color: #FF2747;
+            }
+
+            &:nth-child(3){
+                background-color: #00AE88;
+            }
+
+            &:nth-child(4){
+                background-color: #B4265E;
+            }
+        }
+
+        .tab-panel-load{
+            position: absolute;
+            z-index: 1;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            background-color: transparent;
+            transition: opacity $time, background-color $time, z-index $time $time;
+            
+            &.show{
+                opacity: 1;
+                z-index: 2;
+                background-color: white;
+                transition: opacity $time, background-color $time, z-index 0s;
+            }
+
+            div{
+                display: block;
+                width: 125px;
+                height: 125px;
+                transform: scale(.5);
+            }
+
+            span{
+                position: absolute;
+
+                width: 22px;
+                height: 22px;
+
+                animation-name: loader;
+                animation-duration: 1.2s;
+                animation-iteration-count: infinite;
+                animation-direction: normal; 
+
+                border-radius: 12px;
+                background-color: white;
+
+                &:nth-child(1){
+                    top: 51px;
+                    left: 0;
+                    animation-delay: .45s;
+                }
+
+                &:nth-child(2){
+                    top: 15px;
+                    left: 15px;
+                    animation-delay: .6s;
+                }
+
+                &:nth-child(3){
+                    top: 0;
+                    left: 51px;
+                    animation-delay: .75s;
+                }
+
+                &:nth-child(4){
+                    top: 15px;
+                    right: 15px;
+                    animation-delay: .9s;
+                }
+
+                &:nth-child(5){
+                    top: 51px;
+                    right: 0;
+                    animation-delay: 1.05s;
+                }
+
+                &:nth-child(6){
+                    right: 15px;
+                    bottom: 15px;
+                    animation-delay: 1.2s;
+                }
+
+                &:nth-child(7){
+                    bottom: 0;
+                    left: 51px;
+                    animation-delay: 1.35s;
+                }
+
+                &:nth-child(8){
+                    bottom: 15px;
+                    left: 15px;
+                    animation-delay: 1.5s;
+                }
+            }
+
+            @keyframes loader{
+                0%{
+                    background-color: #58658c;
+                }
+                100%{
+                    background-color: white;
+                }
+            }
+        }
+    }
+}

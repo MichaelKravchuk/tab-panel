@@ -1,0 +1,22 @@
+{
+  "name": "ct-tab-panel",
+  "version": "1.0.0",
+  "description": "custom tag tab-panel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelKravchuk/tab-panel.git"
+  },
+  "keywords": [
+    "tab-panel"
+  ],
+  "author": "Michael Kravchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelKravchuk/tab-panel/issues"
+  },
+  "homepage": "https://github.com/MichaelKravchuk/tab-panel#readme"
+}

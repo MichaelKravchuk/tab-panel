@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="resource/ct-tab-panel.js"></script>
+	<link href="build/ct-tab-panel.min.css" rel="stylesheet">
+
+</head>
+<body>
+	<tab-panel data-id="example">
+		<tab-nav>
+			<tab-nav-item> First tab </tab-nav-item>
+			<tab-nav-item> Second tab </tab-nav-item>
+			<tab-nav-item> Third tab </tab-nav-item>
+			<tab-nav-item> Four tab </tab-nav-item>
+		</tab-nav>
+		<tab-content>
+			<tab-content-item>
+				<tab-control data-event="prev">Prevoius</tab-control>
+				<tab-control data-event="next">Next</tab-control>
+			</tab-content-item>
+			<tab-content-item>
+				<tab-control data-event="prev">Prevoius</tab-control>
+				<tab-control data-event="next">Next</tab-control>
+			</tab-content-item>
+			<tab-content-item>
+				<tab-control data-event="prev">Prevoius</tab-control>
+				<tab-control data-event="setActive" data-params="[4,2]">Next</tab-control>
+			</tab-content-item>
+			<tab-content-item>
+				<tab-control data-event="prev">Prevoius</tab-control>
+				<tab-control data-event="next">Next</tab-control>
+			</tab-content-item>
+		</tab-content>
+	</tab-panel>
+
+	<script>
+		tabPanelExample.addEventListener("setActive", function(e){
+			if(e.detail.nextActiveIndex == 2){
+				e.target.startLoad();
+				setTimeout(function() {
+					tabPanelExample.errorLoad();
+				}, 1000);
+			}
+		})
+	</script>
+	
+</body>
+</html>
+
+
