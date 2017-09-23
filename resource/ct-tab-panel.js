@@ -22,7 +22,7 @@ TabPanelPrototype.createdCallback = function() {
     // PRIVATE VARS ------------------------------------
 
 	var _activeTabIdx = undefined,
-        _nextActiveIndex = 1,
+        _nextActiveIdx = 1,
         _abort = false,
         _stop = false,
         _loadStatus = 0,
@@ -35,14 +35,14 @@ TabPanelPrototype.createdCallback = function() {
 
 	// end PRIVATE VARS --------------------------------
 
-	
+
 
 	// PROPERIES ---------------------------------------
 
 	this.name = 'tab-panel';
-	
+
 	// end PROPERIES -----------------------------------
-	
+
 
 
 	// INIT --------------------------------------------
@@ -51,11 +51,11 @@ TabPanelPrototype.createdCallback = function() {
 		if(_globalName) try {
 			_globalName = _globalName.replace(/-([a-z])/g, _upper );
 			_globalName = _globalName.replace(_globalName[0], _globalName[0].toUpperCase() );
-			
+
 			if(window['tabPanel' + _globalName]){
 				throw new Error('Attribute data-id for "ct-tab-panel" must be unique!');
 			}
-			
+
 			window['tabPanel' + _globalName] = self;
 
 		} catch (e) {
@@ -94,12 +94,12 @@ TabPanelPrototype.createdCallback = function() {
         var activeContentItem = _content.querySelector('tab-content-item.active');
 
         if(activeNavItem){
-            activeNavItem.classList.remove('active');  
-        } 
+            activeNavItem.classList.remove('active');
+        }
         if(activeContentItem){
-            activeContentItem.classList.remove('active');  
-        } 
-        
+            activeContentItem.classList.remove('active');
+        }
+
         navItem.classList.add('active');
         contentItem.classList.add('active');
 
@@ -134,7 +134,7 @@ TabPanelPrototype.createdCallback = function() {
 
     this.abort = function() {
         _abort = true;
-        
+
         if(self.debag){
             console.warn('tabPanel' + _globalName + ": abort event setActive");
         }
@@ -151,9 +151,9 @@ TabPanelPrototype.createdCallback = function() {
 
 
 
-    this.continue = function() {  
+    this.continue = function() {
         _loadStatus = 2;
-        self.setActive(_nextActiveIndex);
+        self.setActive(_nextActiveIdx);
         if(self.debag){
             console.warn('tabPanel' + _globalName + ": continue event setActive");
         }
@@ -190,46 +190,46 @@ TabPanelPrototype.createdCallback = function() {
 
 	// PRIVATE METHODS ---------------------------------
 
-    _upper = function(word) {
+    function _upper(word) {
         return word[1].toUpperCase();
     };
 
 
 
-    _checkAbort = function() {
+    function _checkAbort() {
         if(_abort){
             _abort = false;
             return true;
-        } 
+        }
         return false;
     };
 
 
 
-    _checkStop = function(index) {
+    function _checkStop(index) {
         if(_stop){
             _stop = false;
             return true;
-        } 
+        }
         return false;
     };
 
 
 
-    _checkLoadStatus = function() {
+    function _checkLoadStatus() {
         if(_loadStatus == 0) return false;
         return true
     }
 
 
 
-    _createLoadElem = function() {
+    function _createLoadElem() {
         var elem = document.createElement('div');
         elem.classList.add('tab-panel-load');
 
         var content = document.createElement('div');
         var circle = document.createElement('span');
-        
+
         for(var i=1; i<9; i++){
             content.appendChild(circle.cloneNode());
         }
@@ -242,7 +242,7 @@ TabPanelPrototype.createdCallback = function() {
 
 
 
-    _toggleLoader = function (show, elem) {
+    function _toggleLoader(show, elem) {
         if(show){
             if(elem){
                 _loadElem.innerHTML = "";
@@ -261,14 +261,14 @@ TabPanelPrototype.createdCallback = function() {
     // CUSTOM EVENTS -----------------------------------
 
     var _setActive_ = function(nextIndex){
-        _nextActiveIndex = nextIndex;
+        _nextActiveIdx = nextIndex;
         return new CustomEvent("setActive", {
             bubbles: true,
             cancelable: true,
             detail: {
                 nextActiveIndex: nextIndex,
             },
-            
+
         });
     };
 
@@ -276,7 +276,7 @@ TabPanelPrototype.createdCallback = function() {
 
 
 
-	init(); 
+	init();
 };
 
 
@@ -291,7 +291,7 @@ TabNavPrototype.createdCallback = function() {
     // PROPERIES ---------------------------------------
 
     this.name = 'tab-nav';
-    
+
     // end PROPERIES -----------------------------------
 
 };
@@ -306,19 +306,37 @@ TabNavItemPrototype.createdCallback = function() {
 
     // PRIVATE VARS ------------------------------------
 
-    var _index = Array.prototype.indexOf.call(self.parentNode.children, self) + 1,
+    var _index = _getIndex(),
         _parent = closest(self, 'tab-panel');
 
     // end PRIVATE VARS --------------------------------
 
-    
+
 
     // PROPERIES ---------------------------------------
 
     this.name = 'tab-nav-item';
-    
+
     // end PROPERIES -----------------------------------
-    
+
+
+
+    // PRIVATE METHODS ---------------------------------
+
+    function _getIndex() {
+        var children = self.parentNode.querySelectorAll('tab-nav-item');
+      
+        for(var i = children.length; i > 0; i--){
+            if(children[i-1] === self){
+                return i;
+            }
+        };
+        
+        return 0;
+    }
+
+    // end PRIVATE METHODS -----------------------------
+
 
 
     // EVENTS ------------------------------------------
@@ -346,8 +364,8 @@ TabContentPrototype.createdCallback = function() {
 var TabContentItemPrototype = Object.create(HTMLElement.prototype);
 TabContentItemPrototype.createdCallback = function() {
     var self = this;
-    
-   
+
+
 
 };
 
@@ -367,17 +385,17 @@ TabControlPrototype.createdCallback = function() {
 
     // end PRIVATE VARS --------------------------------
 
-    
+
 
     // PROPERIES ---------------------------------------
 
     this.name = 'tab-control';
-    
+
     // end PROPERIES -----------------------------------
-    
 
 
-   // EVENTS ------------------------------------------
+
+    // EVENTS ------------------------------------------
 
     this.addEventListener('click', function(e) {
         _parent[_controlEvent].apply(false, eval(_controlParams) );

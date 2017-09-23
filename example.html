@@ -11,6 +11,7 @@
 <body>
 	<tab-panel data-id="example">
 		<tab-nav>
+			<span></span>
 			<tab-nav-item> First tab </tab-nav-item>
 			<tab-nav-item> Second tab </tab-nav-item>
 			<tab-nav-item> Third tab </tab-nav-item>
@@ -41,7 +42,7 @@
 			if(e.detail.nextActiveIndex == 2){
 				e.target.startLoad();
 				setTimeout(function() {
-					tabPanelExample.errorLoad();
+					tabPanelExample.endLoad();
 				}, 1000);
 			}
 		})
